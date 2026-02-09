@@ -1,3 +1,19 @@
+"""FastMCP server for generating and validating conventional commits.
+
+This module provides tools for working with conventional commit messages,
+including automatic generation based on staged git changes and validation
+using commitlint. It helps maintain consistent commit message formatting
+across projects.
+
+Typical usage example:
+
+  # Generate a conventional commit message
+  result = generate_conventional_commit()
+
+  # Validate a commit message
+  validation = validate_commit_message("feat: add new feature")
+"""
+
 from fastmcp import FastMCP
 import subprocess
 import os
@@ -16,6 +32,28 @@ mcp = FastMCP("conventional-commits")
     )
 )
 def generate_conventional_commit(repository_path: str = None) -> str:
+    """Generates a conventional commit message from staged git changes.
+
+    Analyzes the current git repository's staged changes and provides
+    the necessary information to generate a properly formatted conventional
+    commit message. The function loads conventional commit guidelines,
+    retrieves git status and diff, and returns structured data for
+    commit message generation.
+
+    Args:
+        repository_path: Optional path to the git repository. If None,
+            uses the current working directory.
+
+    Returns:
+        A JSON string containing either:
+        - Success: repository path, git status, staged diff, guidelines,
+          and instructions for generating the commit message.
+        - Error: error message with hints for resolution.
+
+    Raises:
+        Does not raise exceptions directly, but returns JSON-encoded
+        errors for file access issues or git command failures.
+    """
     try:
         server_dir = os.path.dirname(os.path.abspath(__file__))
         full_path = os.path.join(
@@ -98,7 +136,30 @@ def generate_conventional_commit(repository_path: str = None) -> str:
     )
 )
 def validate_commit_message(message: str) -> str:
+    """Validates a commit message against conventional commit standards.
+
+    Uses commitlint to verify that a commit message follows the conventional
+    commit format. Can handle messages with or without the 'git commit -m'
+    prefix. Returns validation results with detailed error information if
+    the message is invalid.
+
+    Args:
+        message: The commit message to validate. Can be a plain message or
+            include 'git commit -m' prefix with quotes.
+
+    Returns:
+        A JSON string containing:
+        - If valid: validation status, formatted message, and git command.
+        - If invalid: validation status, errors, and fix instructions.
+        - If commitlint not installed: installation instructions.
+
+    Raises:
+        Does not raise exceptions directly, but returns JSON-encoded
+        errors for missing commitlint or validation failures.
+    """
     try:
+        # Extract the actual commit message if wrapped in git command format.
+        # Handle both quoted and unquoted message formats.
         if message.startswith('git commit -m'):
             import re
             match = re.search(r'git commit -m ["\'](.+?)["\']', message)

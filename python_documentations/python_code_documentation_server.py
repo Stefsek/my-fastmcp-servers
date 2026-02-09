@@ -1,3 +1,16 @@
+"""FastMCP server for Python code documentation guidelines.
+
+This module provides access to Python code documentation standards and
+best practices, specifically focusing on Google-style docstrings and
+commenting conventions. It helps developers write well-documented Python
+code that follows industry standards.
+
+Typical usage example:
+
+  # Get Google-style Python documentation guidelines
+  guidelines = get_python_code_documentation_google_style()
+"""
+
 from fastmcp import FastMCP
 import os
 import json
@@ -10,6 +23,23 @@ mcp = FastMCP("python-code-documentation")
             description="Google-style Python docstring and commenting guidelines for writing well-documented code"
 )
 def get_python_code_documentation_google_style() -> str:
+    """Retrieves Google-style Python documentation guidelines.
+
+    Loads and returns comprehensive documentation guidelines for writing
+    Python code using Google-style docstrings. The guidelines include
+    standards for module, class, function, and method documentation,
+    as well as inline commenting conventions.
+
+    Returns:
+        A JSON string containing:
+        - Success: status and the complete guidelines content.
+        - Error: status, error type, and descriptive error message
+          if the guidelines file cannot be accessed.
+
+    Raises:
+        Does not raise exceptions directly, but returns JSON-encoded
+        errors for FileNotFoundError or IOError cases.
+    """
     server_dir = os.path.dirname(os.path.abspath(__file__))
     full_path = os.path.join(server_dir, "python_guides", "markdown", "google_style_python_guide.md")
 
