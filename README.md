@@ -297,3 +297,21 @@ The output includes:
 - Analysis of staged changes
 - Generated commit message following conventional format
 - Ready-to-use `git commit -m "message"` command
+
+---
+
+## Future Implementations
+
+### Token Counting System
+
+Implement token counting mechanism before feeding content to LLMs for better token control and cost management.
+
+**Planned improvements:**
+- Pre-process and count tokens in input data (diffs, guidelines, documentation files)
+- Set configurable token limits per request
+- Implement smart truncation strategies when content exceeds limits
+- Add token usage metrics and logging
+- Optimize content delivery to stay within model context windows
+- Provide warnings when approaching token limits
+
+This will enable more efficient LLM usage and prevent unexpected costs from large file processing.
