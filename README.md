@@ -42,7 +42,7 @@ A collection of Model Context Protocol (MCP) servers built with FastMCP for enha
 - `get_python_code_documentation_google_style`: Retrieves comprehensive Python documentation standards including module, class, function, and inline comment conventions
 
 **Stack:**
-- Python 3.13+
+- Python 3.13.5+
 - FastMCP 2.14.5+
 
 **How it works:**
@@ -59,7 +59,7 @@ A collection of Model Context Protocol (MCP) servers built with FastMCP for enha
 
 Both servers are built using:
 - **FastMCP**: A Python framework for building Model Context Protocol servers
-- **Python 3.13+**: Modern Python with type hints and enhanced error handling
+- **Python 3.13.5+**: Modern Python with type hints and enhanced error handling
 - **MCP Protocol**: Standard protocol for AI model context integration
 - **JSON**: Structured data exchange format
 
