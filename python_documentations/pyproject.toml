@@ -1,9 +1,9 @@
 [project]
 name = "python-documentations"
 version = "0.1.0"
-description = "Add your description here"
+description = "MCP server providing Google-style Python docstring and commenting guidelines for well-documented code"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13.5"
 dependencies = [
     "fastmcp>=2.14.5",
 ]
