@@ -249,7 +249,7 @@ fastmcp install mcp-json fastmcp.json
 After generating the MCP JSON configuration, add it to your coding agent's configuration file:
 
 
-## Usage Examples
+## Demo Examples
 
 ### MCP Server Configuration in Claude Code
 
